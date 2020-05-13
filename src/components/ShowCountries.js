@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import GlobalContext from '../context/globalContext/GlobalContext';
 
-
-const ShowCountries = ({countries, loading})=>{
+const ShowCountries = ()=>{
+    const globalContext = useContext(GlobalContext);
+    const {countries} = globalContext;
     return(
         <div className="jumbotron">
             <div className="container" >
-                {countries.map(countries => (
+            {countries.map(countries => (
                 <div className='card text-center' key={countries.country}>
                 <div style={{backgroundColor: 'gray'}}>
                 <h3 className='btn btn-primary'>{`COUNTRY: ${countries.country}`}</h3>
@@ -21,5 +23,4 @@ const ShowCountries = ({countries, loading})=>{
         </div>
     )
 }
-
 export default ShowCountries;

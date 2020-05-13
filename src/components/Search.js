@@ -1,43 +1,34 @@
-import React, { Component } from 'react';
+import React, { useContext, useState } from 'react';
 import PropsTypes from 'prop-types';
+import GlobalContext from '../context/globalContext/GlobalContext';
 
 
-class Search extends Component{
-    state = {
-        country: ''
-    }
+const Search = () =>{
+    const githubContext = useContext(GlobalContext);
+    const [country, setCountry] = useState('');
  
-   propsType = {
-       getCountry: PropsTypes.func.isRequired,
-       
-       clearTxt: PropsTypes.func.isRequired
-   }
-onChange = (e) =>{
-        this.setState({[e.target.name]: e.target.value});
+  
+const onChange = (e) =>{
+        setCountry(e.target.value);
         //console.log(this.state.country);
-        this.props.removeMsg();
+       
 }
 
-onSubmit = (e)=>{
+const onSubmit = (e)=>{
     e.preventDefault();
-    this.props.getCountry(this.state.country);
-    
+    githubContext.getCountry(country);
+    githubContext.removeMsg();
     //clear input field after data is fetch
-    this.setState({country: ''});
-
-
-
-   
+    setCountry(' ')
 }
-render(){
-    const {country} = this.state;
+
     return(
         
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={onSubmit}>
             <input 
             type="text" 
-            onChange={this.onChange} 
-            value = { country } 
+            onChange={onChange} 
+            value = { country  } 
             name='country' 
             className="form-control" 
             placeholder="Search Countries" 
@@ -46,10 +37,14 @@ render(){
         </form>
 
     )
- }
+
         
 }
         
 
-
+Search.propsType = {
+    getCountry: PropsTypes.func.isRequired,
+    
+    clearTxt: PropsTypes.func.isRequired
+}
 export default Search;

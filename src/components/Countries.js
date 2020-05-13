@@ -1,9 +1,12 @@
-import React, {Fragment}from 'react';
+import React, {Fragment, useContext}from 'react';
 import ShowCountries from './ShowCountries'
 import Progress from './Progress';
 import Msg from './Msg';
+import GlobalContext from '../context/globalContext/GlobalContext';
 
-const Countries = ({countries, loading, correctSyntax})=>{
+const Countries = ()=>{
+    const globalContext = useContext(GlobalContext);
+    const { loading, countries} = globalContext;
     //if loading is true show loading bar
     if(loading){
         return(
@@ -12,16 +15,15 @@ const Countries = ({countries, loading, correctSyntax})=>{
     }else{
         //return data that was fetch if laoding is false
         return( 
+            
             <Fragment>
-                <Msg correctSyntax ={correctSyntax}/>
+                <Msg />
                  <div className="jumbotron">
-                 
-                    <ShowCountries countries = {countries}/>
+                    <ShowCountries  />
                 </div> 
             </Fragment>  
                       
         )
     } 
 }
-
 export default Countries;

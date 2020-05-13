@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {useContext} from 'react';
+import GlobalContext from '../context/globalContext/GlobalContext';
 
-const Msg = ({correctSyntax})=>{
-
+const Msg = ()=>{
+    const globalContext = useContext(GlobalContext);
+    const {alertMsg} = globalContext;
     return(
-           <p style={{textAlign:'center', color: 'blue'}}>{correctSyntax}</p> 
+    <p style={{textAlign:'center', color: 'blue'}}>{alertMsg}</p> 
     )
 }
 
