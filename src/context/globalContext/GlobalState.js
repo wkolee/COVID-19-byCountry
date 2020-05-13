@@ -2,6 +2,7 @@ import React, {useReducer } from "react";
 import Reducer from './Reducer';
 import GlobalContext from './GlobalContext';
 import Axios from 'axios';
+import PropsType from 'prop-types';
 import {
     SET_ALERT,
     SET_COUNTRIES,
@@ -67,5 +68,12 @@ const GlobalState = props =>{
         </GlobalContext.Provider>
       
 }
+GlobalState.propsType = {
+  countries: PropsType.object.isRequired,
+  loading: PropsType.bool.isRequired,
+  showMsg: PropsType.string.isRequired,
+  getCountry: PropsType.func.isRequired,
+  removeMsg: PropsType.func.isRequired
 
+}
 export default GlobalState;

@@ -18,10 +18,4 @@ const App= ()=> {
     );
   }
 
-App.propsType = {
-  countries: PropsType.object.isRequired,
-  loading: PropsType.bool.isRequired,
-  correctSyntax: PropsType.string.isRequired,
-  showMsg: PropsType.bool.isRequired
-}
 export default App;
